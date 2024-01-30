@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <base href="/" >
+</head>
+<body>
+ <h1>List Categories</h1>
+ <div th:if="${message!=null}">
+     <h2 th:text="${message}" ></h2>
+ </div>
+ <table>
+     <tr>
+         <td>Category id</td>
+         <td>Name</td>
+     </tr>
+     <tr th:each="item:${pages.content}" >
+        <td th:text="${item.id}" ></td>
+         <td th:text="${item.name}" ></td>
+         <td></td>
+         <td><a>edit</a></td>
+         <td></td>
+         <td><a>delete</a></td>
+     </tr>
+ </table>
+ <span th:each="i: ${#numbers.sequence(0,pages.totalPages-1)}" >
+     <a th:href="@{categories/paginate(page=${i},size=${pages.size},sort=${sort})}" th:text="${i}" ></a>
+ </span>
+  <a href="categories/newOrEdit" >Add new category</a>
+<form action="categories/paginate" >
+    <select name="sort" >
+        <option value="id" >ID</option>
+        <option value="name" >Name</option>
+    </select>
+    <input type="submit" value="sort" >
+</form>
+</body>
+</html>

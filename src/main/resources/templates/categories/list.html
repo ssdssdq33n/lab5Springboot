@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <base href="/" >
+</head>
+<body>
+ <h1>List Categories</h1>
+ <div th:if="${message!=null}" >
+     <h2 th:text="${message}" ></h2>
+ </div>
+ <table>
+     <tr>
+         <td>Category id</td>
+         <td>Name</td>
+     </tr>
+     <tr th:each="item:${categories}" >
+        <td th:text="${item.id}" ></td>
+         <td th:text="${item.name}" ></td>
+         <td></td>
+         <td><a th:href="@{'categories/newOrEdit/'+${item.id}}">edit</a></td>
+         <td></td>
+         <td><a th:href="@{'categories/delete/'+${item.id}}" >delete</a></td>
+     </tr>
+ </table>
+  <a href="categories/newOrEdit" >Add new category</a>
+</body>
+</html>
